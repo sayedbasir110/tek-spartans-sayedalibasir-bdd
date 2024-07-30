@@ -18,5 +18,8 @@ public class BaseSetup {
         // null check before quit
         if (driver != null) driver.quit();
     }
-
+    // giving read-only access for driver instance
+    public static WebDriver getDriver() {
+        return driver;
+    }
 }
