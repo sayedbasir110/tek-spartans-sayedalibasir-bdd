@@ -27,7 +27,6 @@
             <version>7.18.1</version>
             <scope>test</scope>
         </dependency>
-
         <!-- Cucumber Java Dependency -->
         <dependency>
             <groupId>io.cucumber</groupId>

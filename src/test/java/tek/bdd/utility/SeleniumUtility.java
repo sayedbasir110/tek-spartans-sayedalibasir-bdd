@@ -24,10 +24,11 @@ public class SeleniumUtility extends BaseSetup {
     }
     // method to send string to a given locator
     public void sendKeysToElement (By locator, String value) {
-        waitForVisibility(locator).sendKeys();
+        waitForVisibility(locator).sendKeys(value);
     }
     // method to return text of an element
     public String getElementText (By locator){
         return waitForVisibility(locator).getText();
     }
+
 }
