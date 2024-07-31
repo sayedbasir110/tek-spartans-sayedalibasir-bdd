@@ -9,7 +9,7 @@ import tek.bdd.base.BaseSetup;
 import java.time.Duration;
 
 public class SeleniumUtility extends BaseSetup {
-    //
+    // method to return WebDriverWait for explicit wait
     private WebDriverWait getWait() {
         return  new WebDriverWait(getDriver(), Duration.ofSeconds(20));
     }
