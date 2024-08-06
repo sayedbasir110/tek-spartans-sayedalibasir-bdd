@@ -1,8 +1,17 @@
 Feature: Create new account
-  Scenario: Navigate to Create Account page and Create new Account
-    When User click on Sign in button
-    Then Validate user is in Sign in page
-    When User click on Create New Account button
-    Then  Validate user is in Sign Up page
-    When User enter new account information and click on Sign Up button
-    Then Validate new account created
+#  Background is used for repetitive steps in all scenarios
+  Background: setup create account scenarios
+    When user click on "Sign in" link
+    Then validate user is in sign in page
+    When user click on "Create New Account" link
+
+  Scenario: create valid account with random email
+    When user enter "Name" and "random"  and "Password@123"
+    When user click on "Sign Up" button
+    Then validate user is in account page
+    Then validate email address in account page match
+
+    Scenario: Create account with existing email
+      When user enter "Name" and "john.doe@gmail.com"  and "Password@123"
+      When user click on "Sign Up" button
+      Then user should see error "this email is already exist, please use another email address"

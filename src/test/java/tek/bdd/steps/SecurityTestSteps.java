@@ -10,32 +10,16 @@ import tek.bdd.utility.SeleniumUtility;
 
 public class SecurityTestSteps extends SeleniumUtility {
 
-    @When("user click on sign in button")
-    public void UserClickOnSignInButton() {
-        clickOnElement(HomePage.SING_IN_LINK);
+    @When("user enters {string} and {string}")
+    public void user_enters_and(String email, String password) {
+        sendKeysToElement(SignInPage.EMAIL_INPUT,email);
+        sendKeysToElement(SignInPage.PASSWORD_INPUT,password);
     }
-    @When("User enters {string} and {string} and click on Login button")
-    public void userEntersValidUsernameAndPasswordAndClickOnLoginButton(String username, String password) {
-    sendKeysToElement(SignInPage.EMAIL_INPUT,username);
-    sendKeysToElement(SignInPage.PASSWORD_INPUT,password);
-    clickOnElement(SignInPage.LOGIN_BUTTON);
-    }
-    @Then("User should be able to see account link")
-    public void UserShouldBeAbleToSeeAccountLink() {
+    @Then("user should be able to see account link")
+    public void user_should_be_able_to_see_account_link() {
         boolean isAccountLinkDisplayed = isElementDisplayed(HomePage.ACCOUNT_LINK);
         Assert.assertTrue(isAccountLinkDisplayed);
     }
-    @When("User enters {string} and {string} and click on login button")
-    public void userEntersInvalidCredentialsAndClickOnLoginButton(String username, String password) {
-        sendKeysToElement(SignInPage.EMAIL_INPUT,username);
-        sendKeysToElement(SignInPage.PASSWORD_INPUT,password);
-        clickOnElement(SignInPage.LOGIN_BUTTON);
 
-    }
-    @Then("User should be able to see error {string}")
-    public void userShouldBeAbleToSeeError(String errorMessage) {
-        String actualErrorMessage = getElementText(SignInPage.ERROR_MESSAGE);
-        Assert.assertEquals(errorMessage,actualErrorMessage);
-    }
 
 }

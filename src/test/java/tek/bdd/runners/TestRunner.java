@@ -8,7 +8,11 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "classpath:features/SecurityTest.feature", // Directory for Feature file
         glue = "tek.bdd.steps",
-        dryRun = false //Package for all the steps
+        dryRun = false, //Package for all the steps
+        tags = "",
+        plugin = {
+                "html:target/cucumber_report/index.html"
+        }
 )
 public class TestRunner {
 }

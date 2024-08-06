@@ -11,6 +11,7 @@ public class SignUpPage {
     public static final By PASSWORD_INPUT = By.id("passwordInput");
     public static final By CONFIRM_PASSWORD_INPUT = By.id("confirmPasswordInput");
     public static final By PROFILE_IMAGE = By.id("profileImage");
+    public static final By ERROR_MESSAGE = By.className("error");
 
 
 
