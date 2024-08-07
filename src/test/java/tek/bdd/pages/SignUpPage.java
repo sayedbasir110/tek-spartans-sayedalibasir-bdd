@@ -12,10 +12,7 @@ public class SignUpPage {
     public static final By CONFIRM_PASSWORD_INPUT = By.id("confirmPasswordInput");
     public static final By PROFILE_IMAGE = By.id("profileImage");
     public static final By ERROR_MESSAGE = By.className("error");
-    public static final By NAME_ERROR = By.id("nameError");
-    public static final By EMAIL_ERROR = By.id("emailError");
-    public static final By PASSWORD_ERROR = By.id("passwordError");
-    public static final By CONFIRM_PASSWORD_ERROR = By.id("confirmPasswordError");
+    public static final By FIELDS_ERROR_MESSAGES = By.className("error");
 
 
 

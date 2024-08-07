@@ -6,6 +6,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import tek.bdd.base.BaseSetup;
 
 import java.time.Duration;
+import java.util.List;
 
 public class SeleniumUtility extends BaseSetup {
     // method to return WebDriverWait for explicit wait
@@ -33,6 +34,9 @@ public class SeleniumUtility extends BaseSetup {
     }
     public boolean isElementDisplayed(By locator) {
         return waitForVisibility(locator).isDisplayed();
+    }
+    public List<WebElement> getElements(By locator) {
+        return getWait().until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
     }
     public byte[] takeScreenShot () {
         TakesScreenshot screenshot = (TakesScreenshot) getDriver();

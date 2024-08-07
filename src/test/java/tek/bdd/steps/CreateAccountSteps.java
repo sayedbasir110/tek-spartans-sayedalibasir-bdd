@@ -5,6 +5,7 @@ import io.cucumber.java.en.When;
 import io.cucumber.datatable.DataTable;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import tek.bdd.pages.AccountPage;
 import tek.bdd.pages.HomePage;
 import tek.bdd.pages.SignInPage;
@@ -13,6 +14,8 @@ import tek.bdd.utility.RandomEmailGenerator;
 import tek.bdd.utility.SeleniumUtility;
 
 import javax.swing.text.Utilities;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CreateAccountSteps extends SeleniumUtility {
@@ -46,19 +49,22 @@ public class CreateAccountSteps extends SeleniumUtility {
     }
     @Then("user should see error under each field")
     public void user_should_see_error_under_each_field(DataTable dataTable) {
-        Map<String, String> data = dataTable.asMap();
-        String nameError = data.get("nameError");
-        String emailError = data.get("emailError");
-        String passwordError = data.get("passwordError");
-        String confirmPasswordError = data.get("confirmPasswordError");
-        String actualNameError = getElementText(SignUpPage.NAME_ERROR);
-        String actualEmailError = getElementText(SignUpPage.EMAIL_ERROR);
-        String actualPasswordError = getElementText(SignUpPage.PASSWORD_ERROR);
-        String actualConfirmPasswordError = getElementText(SignUpPage.CONFIRM_PASSWORD_ERROR);
-        Assert.assertEquals(nameError,actualNameError);
-        Assert.assertEquals(emailError,actualEmailError);
-        Assert.assertEquals(passwordError,actualPasswordError);
-        Assert.assertEquals(confirmPasswordError,actualConfirmPasswordError);
+        Map<String, String> expectedData = dataTable.asMap();
+        List<WebElement> errorElements = getElements(SignUpPage.FIELDS_ERROR_MESSAGES);
+        Assert.assertEquals(expectedData.size(),errorElements.size());
+
+        Map<String, String> actualErrors = new HashMap<>();
+        for (WebElement element : errorElements){
+            String text = element.getText();
+            String key = text.split(" ")[0];
+            actualErrors.put(key,text);
+        }
+        for (String key : expectedData.keySet()){
+            Assert.assertEquals(expectedData.get(key),actualErrors.get(key));
+        }
+
+
+
     }
 
 

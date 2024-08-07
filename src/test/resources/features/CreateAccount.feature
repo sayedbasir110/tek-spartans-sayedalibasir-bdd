@@ -16,10 +16,10 @@ Feature: Create new account
     When user click on "Sign Up" button
     Then user should see error "this email is already exist, please use another email address"
 
-  Scenario: Navigate to create new account page and click on sign up button and validate all errors in fields\
+  Scenario: Validate error on all fields when no data entered
     When user click on "Sign Up" button
     Then user should see error under each field
-      | nameError            | Name is a required field             |
-      | emailError           | Email is a required field            |
-      | passwordError       | Password is a required field         |
-      | confirmPasswordError | Confirm Password is a required field |
+      | Name     | Name is a required field             |
+      | Email    | Email is a required field            |
+      | Password | Password is a required field         |
+      | Confirm  | Confirm Password is a required field |
