@@ -47,10 +47,10 @@ public class CreateAccountSteps extends SeleniumUtility {
     @Then("user should see error under each field")
     public void user_should_see_error_under_each_field(DataTable dataTable) {
         Map<String, String> data = dataTable.asMap();
-        String nameError = data.get("Name");
-        String emailError = data.get("Email");
-        String passwordError = data.get("Password");
-        String confirmPasswordError = data.get("Confirm Password");
+        String nameError = data.get("nameError");
+        String emailError = data.get("emailError");
+        String passwordError = data.get("passwordError");
+        String confirmPasswordError = data.get("confirmPasswordError");
         String actualNameError = getElementText(SignUpPage.NAME_ERROR);
         String actualEmailError = getElementText(SignUpPage.EMAIL_ERROR);
         String actualPasswordError = getElementText(SignUpPage.PASSWORD_ERROR);

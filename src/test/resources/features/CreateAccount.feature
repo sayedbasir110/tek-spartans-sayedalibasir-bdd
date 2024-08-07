@@ -19,7 +19,7 @@ Feature: Create new account
   Scenario: Navigate to create new account page and click on sign up button and validate all errors in fields\
     When user click on "Sign Up" button
     Then user should see error under each field
-      | Name             | Name is a required field             |
-      | Email            | Email is a required field            |
-      | Password         | Password is a required field         |
-      | Confirm Password | Confirm Password is a required field |
+      | nameError            | Name is a required field             |
+      | emailError           | Email is a required field            |
+      | passwordError       | Password is a required field         |
+      | confirmPasswordError | Confirm Password is a required field |
