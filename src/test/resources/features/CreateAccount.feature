@@ -11,7 +11,15 @@ Feature: Create new account
     Then validate user is in account page
     Then validate email address in account page match
 
-    Scenario: Create account with existing email
-      When user enter "Name" and "john.doe@gmail.com"  and "Password@123"
-      When user click on "Sign Up" button
-      Then user should see error "this email is already exist, please use another email address"
+  Scenario: Create account with existing email
+    When user enter "Name" and "john.doe@gmail.com"  and "Password@123"
+    When user click on "Sign Up" button
+    Then user should see error "this email is already exist, please use another email address"
+
+  Scenario: Navigate to create new account page and click on sign up button and validate all errors in fields\
+    When user click on "Sign Up" button
+    Then user should see error under each field
+      | Name             | Name is a required field             |
+      | Email            | Email is a required field            |
+      | Password         | Password is a required field         |
+      | Confirm Password | Confirm Password is a required field |

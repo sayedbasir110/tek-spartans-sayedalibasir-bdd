@@ -10,6 +10,7 @@ import tek.bdd.utility.SeleniumUtility;
 
 public class SecurityTestSteps extends SeleniumUtility {
 
+
     @When("user enters {string} and {string}")
     public void user_enters_and(String email, String password) {
         sendKeysToElement(SignInPage.EMAIL_INPUT,email);

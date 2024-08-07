@@ -2,6 +2,7 @@ package tek.bdd.steps;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.datatable.DataTable;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import tek.bdd.pages.AccountPage;
@@ -12,6 +13,7 @@ import tek.bdd.utility.RandomEmailGenerator;
 import tek.bdd.utility.SeleniumUtility;
 
 import javax.swing.text.Utilities;
+import java.util.Map;
 
 public class CreateAccountSteps extends SeleniumUtility {
     private static String emailToUse;
@@ -41,6 +43,22 @@ public class CreateAccountSteps extends SeleniumUtility {
         String actualEmail = getElementText(AccountPage.PROFILE_EMAIL_TEXT);
         Assert.assertEquals("Email in Account page should match with email used in create account step",
                 emailToUse,actualEmail);
+    }
+    @Then("user should see error under each field")
+    public void user_should_see_error_under_each_field(DataTable dataTable) {
+        Map<String, String> data = dataTable.asMap();
+        String nameError = data.get("Name");
+        String emailError = data.get("Email");
+        String passwordError = data.get("Password");
+        String confirmPasswordError = data.get("Confirm Password");
+        String actualNameError = getElementText(SignUpPage.NAME_ERROR);
+        String actualEmailError = getElementText(SignUpPage.EMAIL_ERROR);
+        String actualPasswordError = getElementText(SignUpPage.PASSWORD_ERROR);
+        String actualConfirmPasswordError = getElementText(SignUpPage.CONFIRM_PASSWORD_ERROR);
+        Assert.assertEquals(nameError,actualNameError);
+        Assert.assertEquals(emailError,actualEmailError);
+        Assert.assertEquals(passwordError,actualPasswordError);
+        Assert.assertEquals(confirmPasswordError,actualConfirmPasswordError);
     }
 
 
