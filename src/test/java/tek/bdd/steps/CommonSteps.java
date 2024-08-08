@@ -4,6 +4,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import tek.bdd.pages.SignInPage;
 import tek.bdd.pages.SignUpPage;
 import tek.bdd.utility.SeleniumUtility;
 
@@ -19,8 +20,7 @@ public class CommonSteps extends SeleniumUtility {
     }
     @Then("user should see error {string}")
     public void userShouldSeeError(String error) {
-        String errorXpath = "//div[text()='"+ error +"']";
-        String errorText = getElementText(By.xpath(errorXpath));
+        String errorText = getElementText(SignInPage.ERROR_MESSAGE);
         Assert.assertEquals(error,errorText);
     }
     @Then("validate user is in {string} page")
