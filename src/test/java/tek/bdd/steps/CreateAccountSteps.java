@@ -52,7 +52,6 @@ public class CreateAccountSteps extends SeleniumUtility {
         Map<String, String> expectedData = dataTable.asMap();
         List<WebElement> errorElements = getElements(SignUpPage.FIELDS_ERROR_MESSAGES);
         Assert.assertEquals(expectedData.size(),errorElements.size());
-
         Map<String, String> actualErrors = new HashMap<>();
         for (WebElement element : errorElements){
             String text = element.getText();
