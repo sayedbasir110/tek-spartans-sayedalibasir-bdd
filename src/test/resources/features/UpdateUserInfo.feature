@@ -6,7 +6,7 @@ Feature: Update user info
     When user click on "Login" button
     When user click on "Account" link
     Then validate user is in account page
-    When user clear data and enter "Ali Basir" in "name" field
+    When user clear data and enter "JOHN DOE" in "name" field
     When user clear data and enter "random" in "phoneNumber" field
     When user click on "Update" button
     Then validate success toast message is displayed
