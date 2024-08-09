@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import tek.bdd.pages.SignInPage;
 import tek.bdd.pages.SignUpPage;
+import tek.bdd.utility.RandomPhoneNumberGenerator;
 import tek.bdd.utility.SeleniumUtility;
 
 public class CommonSteps extends SeleniumUtility {
@@ -28,5 +29,12 @@ public class CommonSteps extends SeleniumUtility {
         String titleXpath = "//h1[text()='"+ pageSubTitle +"']";
         String actualSubTitle = getElementText(By.xpath(titleXpath));
         Assert.assertEquals(pageSubTitle,actualSubTitle);
+    }
+    @When("user clear data and enter {string} in {string} field")
+    public void user_clear_data_and_enter_in_field(String newValue, String field) {
+        String fieldXpath = "//input[@name='"+ field + "']";
+        String value = newValue.equalsIgnoreCase("random") ? RandomPhoneNumberGenerator.generateRandomPhoneNumber() : newValue;
+        clearElementData(By.xpath(fieldXpath));
+        sendKeysToElement(By.xpath(fieldXpath), value);
     }
 }
