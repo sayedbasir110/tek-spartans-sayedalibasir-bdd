@@ -10,17 +10,12 @@ import tek.bdd.utility.SeleniumUtility;
 
 public class SecurityTestSteps extends SeleniumUtility {
 
+    @Then("validate user is in Sign in page")
+    public void validateUserIsInSignInPage() {
+        String pageSubtitle = getElementText(SignInPage.PAGE_SUBTITLE);
+        Assert.assertEquals("Sign in", pageSubtitle);
+    }
 
-    @When("user enter {string} and {string}")
-    public void user_enters_and(String email, String password) {
-        sendKeysToElement(SignInPage.EMAIL_INPUT,email);
-        sendKeysToElement(SignInPage.PASSWORD_INPUT,password);
-    }
-    @Then("user should be able to see account link")
-    public void user_should_be_able_to_see_account_link() {
-        boolean isAccountLinkDisplayed = isElementDisplayed(HomePage.ACCOUNT_LINK);
-        Assert.assertTrue(isAccountLinkDisplayed);
-    }
 
 
 }

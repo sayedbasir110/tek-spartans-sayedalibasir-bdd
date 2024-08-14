@@ -19,7 +19,9 @@ public class SeleniumUtility extends BaseSetup {
         getWait().until(ExpectedConditions.elementToBeClickable(locator)).click();
     }
     public void sendKeysToElement (By locator, String value) {
-        waitForVisibility(locator).sendKeys(value);
+        WebElement element = waitForVisibility(locator);
+        element.clear();
+        element.sendKeys(value);
     }
     public String getElementText (By locator){
         return waitForVisibility(locator).getText();

@@ -6,10 +6,13 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import tek.bdd.pages.SignInPage;
 import tek.bdd.pages.SignUpPage;
+import tek.bdd.utility.RandomEmailGenerator;
 import tek.bdd.utility.RandomPhoneNumberGenerator;
 import tek.bdd.utility.SeleniumUtility;
 
 public class CommonSteps extends SeleniumUtility {
+    static String emailToUse;
+    static String phoneNumberToUse;
     @When("user click on {string} link")
     public void userClickOnLink(String linkText) {
         clickOnElement(By.linkText(linkText));
@@ -24,17 +27,23 @@ public class CommonSteps extends SeleniumUtility {
         String errorText = getElementText(SignInPage.ERROR_MESSAGE);
         Assert.assertEquals(error,errorText);
     }
-    @Then("validate user is in {string} page")
-    public void validate_user_is_in_page(String pageSubTitle) {
-        String titleXpath = "//h1[text()='"+ pageSubTitle +"']";
-        String actualSubTitle = getElementText(By.xpath(titleXpath));
-        Assert.assertEquals(pageSubTitle,actualSubTitle);
+    @When("user enter {string} in {string} field")
+    public void userEnterInField(String newValue, String field) {
+        String fieldXpath = "//label[text()='"+ field +"']/..//input";
+        if (newValue.equalsIgnoreCase("random phone number")) {
+            phoneNumberToUse = RandomPhoneNumberGenerator.generateRandomPhoneNumber();
+            sendKeysToElement(By.xpath(fieldXpath), phoneNumberToUse);
+        }
+        else if (newValue.equalsIgnoreCase("random email address")) {
+            emailToUse = RandomEmailGenerator.generateRandomEmail();
+            sendKeysToElement(By.xpath(fieldXpath), emailToUse);
+        }
+        else sendKeysToElement(By.xpath(fieldXpath), newValue);
     }
-    @When("user clear data and enter {string} in {string} field")
-    public void user_clear_data_and_enter_in_field(String newValue, String field) {
-        String fieldXpath = "//input[@name='"+ field + "']";
-        String value = newValue.equalsIgnoreCase("random") ? RandomPhoneNumberGenerator.generateRandomPhoneNumber() : newValue;
-        clearElementData(By.xpath(fieldXpath));
-        sendKeysToElement(By.xpath(fieldXpath), value);
+    @Then("user should be able to see {string} link")
+    public void userShouldSeeLink (String linkName){
+        boolean isLinkDisplayed = isElementDisplayed(By.linkText(linkName));
+        Assert.assertTrue(isLinkDisplayed);
     }
+
 }

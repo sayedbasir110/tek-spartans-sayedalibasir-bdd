@@ -4,15 +4,22 @@ Feature: Create new account
     When user click on "Sign in" link
     Then validate user is in sign in page
     When user click on "Create New Account" link
+    Then validate user is in sign Up page
 
   Scenario: Create valid account with random email
-    When user enter "Name" and "random"  and "Password@123"
+    When user enter "Name" in "Name" field
+    When user enter "random email address" in "Email" field
+    When user enter "Password@123" in "Password" field
+    When user enter "Password@123" in "Confirm Password" field
     When user click on "Sign Up" button
     Then validate user is in account page
-    Then validate email address in account page match
+    Then validate email address in account page matches with given email address
 
   Scenario: Create account with existing email
-    When user enter "Name" and "john.doe@gmail.com"  and "Password@123"
+    When user enter "Name" in "Name" field
+    When user enter "john.doe@gmail.com" in "Email" field
+    When user enter "Password@123" in "Password" field
+    When user enter "Password@123" in "Confirm Password" field
     When user click on "Sign Up" button
     Then user should see error "this email is already exist, please use another email address"
 

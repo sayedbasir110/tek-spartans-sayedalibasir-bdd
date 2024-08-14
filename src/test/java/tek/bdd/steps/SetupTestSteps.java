@@ -10,7 +10,7 @@ import tek.bdd.utility.SeleniumUtility;
 public class SetupTestSteps extends SeleniumUtility {
 
     @Then("validate top left corner is TEKSCHOOL")
-    public void validateTopLeftLogo() {
+    public void validateTopLeftCornerLogo() {
         String topLeftCornerText = getElementText(By.className("top-nav__logo"));
         Assert.assertEquals("TEKSCHOOL" , topLeftCornerText);
     }

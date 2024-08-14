@@ -19,20 +19,16 @@ import java.util.List;
 import java.util.Map;
 
 public class CreateAccountSteps extends SeleniumUtility {
-    private static String emailToUse;
+
     @Then("validate user is in sign in page")
     public void validateUserIsInSignInPage() {
         String pageSubTitle = getElementText(SignInPage.PAGE_SUBTITLE);
         Assert.assertEquals("Sign in",pageSubTitle);
     }
-    @When("user enter {string} and {string}  and {string}")
-    public void userEnterNewAccountInfo(String name, String email, String password) {
-        emailToUse = email.equalsIgnoreCase("random") ?
-                RandomEmailGenerator.generateRandomEmail() : email;
-        sendKeysToElement(SignUpPage.NAME_INPUT,name);
-        sendKeysToElement(SignUpPage.EMAIL_INPUT,emailToUse);
-        sendKeysToElement(SignUpPage.PASSWORD_INPUT,password);
-        sendKeysToElement(SignUpPage.CONFIRM_PASSWORD_INPUT,password);
+    @Then("validate user is in sign Up page")
+    public void validate_user_is_in_sign_up_page() {
+        String pageSubTitle = getElementText(SignUpPage.PAGE_SUBTITLE);
+        Assert.assertEquals("Sign Up",pageSubTitle);
     }
 
     @Then("validate user is in account page")
@@ -41,14 +37,14 @@ public class CreateAccountSteps extends SeleniumUtility {
         Assert.assertEquals("Account page should contains Your Profile text",
                 "Your Profile", pageSubTitle);
     }
-    @Then("validate email address in account page match")
+    @Then("validate email address in account page matches with given email address")
     public void validateEmailAddressInAccountPageMatch() {
         String actualEmail = getElementText(AccountPage.PROFILE_EMAIL_TEXT);
         Assert.assertEquals("Email in Account page should match with email used in create account step",
-                emailToUse,actualEmail);
+                CommonSteps.emailToUse,actualEmail);
     }
     @Then("user should see error under each field")
-    public void user_should_see_error_under_each_field(DataTable dataTable) {
+    public void userShouldSeeErrorUnderEachField(DataTable dataTable) {
         Map<String, String> expectedData = dataTable.asMap();
         List<WebElement> errorElements = getElements(SignUpPage.FIELDS_ERROR_MESSAGES);
         Assert.assertEquals(expectedData.size(),errorElements.size());
@@ -61,9 +57,6 @@ public class CreateAccountSteps extends SeleniumUtility {
         for (String key : expectedData.keySet()){
             Assert.assertEquals(expectedData.get(key),actualErrors.get(key));
         }
-
-
-
     }
 
 
