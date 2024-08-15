@@ -6,6 +6,7 @@ Feature: Create new account
     When user click on "Create New Account" link
     Then validate user is in sign Up page
 
+  @UserStory4
   Scenario: Create valid account with random email
     When user enter "Name" in "Name" field
     When user enter "random email address" in "Email" field
@@ -15,6 +16,7 @@ Feature: Create new account
     Then validate user is in account page
     Then validate email address in account page matches with given email address
 
+  @UserStory4.1
   Scenario: Create account with existing email
     When user enter "Name" in "Name" field
     When user enter "john.doe@gmail.com" in "Email" field
@@ -23,6 +25,7 @@ Feature: Create new account
     When user click on "Sign Up" button
     Then user should see error "this email is already exist, please use another email address"
 
+  @UserStory4.2
   Scenario: Validate error on all fields when no data entered
     When user click on "Sign Up" button
     Then user should see error under each field

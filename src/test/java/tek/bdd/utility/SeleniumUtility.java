@@ -39,9 +39,6 @@ public class SeleniumUtility extends BaseSetup {
         TakesScreenshot screenshot = (TakesScreenshot) getDriver();
         return screenshot.getScreenshotAs(OutputType.BYTES);
     }
-    public void clearElementData(By locator) {
-        waitForVisibility(locator).clear();
-    }
 
 
 }

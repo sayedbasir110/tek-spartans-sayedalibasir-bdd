@@ -1,5 +1,6 @@
 Feature: Security test scenarios
 
+@UserStory1
   Scenario: Validate successful login when user enters valid credentials
     When user click on "Sign in" link
     Then validate user is in Sign in page
@@ -7,7 +8,7 @@ Feature: Security test scenarios
     When user enter "John@123" in "Password" field
     When user click on "Login" button
     Then user should be able to see "Account" link
-
+@UserStory2,3
   Scenario Outline: Validate error when user enters invalid credentials
     When user click on "Sign in" link
     Then validate user is in Sign in page
