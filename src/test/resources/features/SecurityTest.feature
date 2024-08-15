@@ -1,7 +1,7 @@
 Feature: Security test scenarios
 
 @UserStory1
-  Scenario: Validate successful login when user enters valid credentials
+  Scenario: User login with valid credential successfully
     When user click on "Sign in" link
     Then validate user is in Sign in page
     When user enter "john.doe@gmail.com" in "Email" field
@@ -9,7 +9,7 @@ Feature: Security test scenarios
     When user click on "Login" button
     Then user should be able to see "Account" link
 @UserStory2,3
-  Scenario Outline: Validate error when user enters invalid credentials
+  Scenario Outline: User want to login with invalid credential
     When user click on "Sign in" link
     Then validate user is in Sign in page
     When user enter "<username>" in "Email" field

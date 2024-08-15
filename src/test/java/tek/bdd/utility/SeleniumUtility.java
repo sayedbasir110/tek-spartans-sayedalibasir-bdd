@@ -40,5 +40,9 @@ public class SeleniumUtility extends BaseSetup {
         return screenshot.getScreenshotAs(OutputType.BYTES);
     }
 
+    public void clickOnElement (WebElement element){
+        getWait().until(ExpectedConditions.elementToBeClickable(element)).click();
+    }
+
 
 }

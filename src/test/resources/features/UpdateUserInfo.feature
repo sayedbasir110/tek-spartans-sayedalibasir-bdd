@@ -10,7 +10,7 @@ Feature: Update user info
     Then validate user is in account page
 
   @UserStory5
-  Scenario: Validate user successfully update user info
+  Scenario: User update personal info successfully
     When user enter "JOHN DOE" in "Name" field
     When user enter "random phone number" in "Phone Number" field
     When user click on "Update" button
@@ -18,7 +18,7 @@ Feature: Update user info
     Then validate account name is "JOHN DOE"
 
     @UserStory6
-    Scenario: Validate user successfully change password
+    Scenario: User change password and reverts it back successfully
       When user enter "John@123" in "Previous Password" field
       When user enter "Johndoe$123" in "New Password" field
       When user enter "Johndoe$123" in "Confirm Password" field
