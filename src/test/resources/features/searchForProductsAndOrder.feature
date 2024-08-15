@@ -1,4 +1,4 @@
-Feature: Search for products
+Feature: Search for products and order items
   @UserStory7
   Scenario: User search for products
     When user enter "console" in search bar
