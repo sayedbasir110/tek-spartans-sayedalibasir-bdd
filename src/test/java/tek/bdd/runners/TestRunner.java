@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
         features = "classpath:features/", // Directory for Feature file
         glue = "tek.bdd.steps",
         dryRun = false, //Package for all the steps
-        tags = "@UserStory6",
+        tags = "@UserStory7",
         plugin = {
                 "html:target/cucumber_report/index.html"
         }

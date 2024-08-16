@@ -22,14 +22,15 @@ public class SearchForProductsSteps extends SeleniumUtility {
     }
     @Then("validate displayed products contains {string} in their title")
     public void validateDisplayedProducts(String expectedText) {
-        List<WebElement> products= getElements(HomePage.PRODUCTS_NAME);
+        List<WebElement> products= getElements(HomePage.ALL_SEARCH_RESULT_TITLE);
+        Assert.assertFalse(products.isEmpty());
         for (WebElement element : products){
             Assert.assertTrue(element.getText().toLowerCase().contains(expectedText.toLowerCase()));
         }
     }
     @When("user click on a product")
     public void userClickOnAProduct() {
-        List<WebElement> products = getElements(HomePage.PRODUCTS_NAME);
+        List<WebElement> products = getElements(HomePage.ALL_SEARCH_RESULT_TITLE);
         clickOnElement(products.get(0));
     }
     @Then("validate user is in product page")
@@ -50,10 +51,10 @@ public class SearchForProductsSteps extends SeleniumUtility {
     public void userClickOnCartButton() {
         clickOnElement(HomePage.CART_BUTTON);
     }
-    @Then("validate only one item is in the cart")
-    public void validateOnlyOneItemIsInTheCart() {
-        List<WebElement> itemInCart = getElements(CartPage.CART_ITEMS);
-        Assert.assertEquals(1,itemInCart.size());
+    @Then("validate {int} item is in the cart")
+    public void validateOnlyOneItemIsInTheCart(int expectedNumber) {
+        List<WebElement> itemsInCart = getElements(CartPage.CART_ITEMS);
+        Assert.assertEquals(expectedNumber,itemsInCart.size());
     }
     @When("user delete item from the cart")
     public void userDeleteItemFromTheCart() {

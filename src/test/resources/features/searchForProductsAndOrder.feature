@@ -1,9 +1,9 @@
 Feature: Search for products and order items
   @UserStory7
   Scenario: User search for products
-    When user enter "console" in search bar
+    When user enter "samsung" in search bar
     When user click on search button
-    Then validate displayed products contains "console" in their title
+    Then validate displayed products contains "samsung" in their title
 
     @UserStory8
     Scenario: User add product to cart and delete cart item
@@ -21,6 +21,6 @@ Feature: Search for products and order items
       When user click on Add to Cart button
       Then validate item is added to the cart
       When user click on Cart button
-      Then validate only one item is in the cart
+      Then validate 1 item is in the cart
       When user delete item from the cart
       Then validate item is deleted from the cart
